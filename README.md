@@ -39,7 +39,7 @@ func BenchmarkExample(b *testing.B) {
 
 We run the test and analyze it using the `bencstat` tool:
 ```shell
-$ go test -bench=. run='^$' -count 5 | tee result.txt
+$ go test -run='^$' -bench=. -benchmem -count 5 | tee result.txt
 $ benchstat result.txt
 ```
 
