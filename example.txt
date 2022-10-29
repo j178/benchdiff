@@ -1,0 +1,19 @@
+goos: windows
+goarch: amd64
+pkg: github.com/j178/benchdiff
+cpu: AMD Ryzen 7 3700X 8-Core Processor             
+BenchmarkExample
+BenchmarkExample/strings.Builder
+BenchmarkExample/strings.Builder-16         	1000000000	         0.7108 ns/op	       0 B/op	       0 allocs/op
+BenchmarkExample/strings.Builder-16         	1000000000	         0.7063 ns/op	       0 B/op	       0 allocs/op
+BenchmarkExample/strings.Builder-16         	1000000000	         0.7091 ns/op	       0 B/op	       0 allocs/op
+BenchmarkExample/strings.Builder-16         	1000000000	         0.7012 ns/op	       0 B/op	       0 allocs/op
+BenchmarkExample/strings.Builder-16         	1000000000	         0.7098 ns/op	       0 B/op	       0 allocs/op
+BenchmarkExample/bytes.Buffer
+BenchmarkExample/bytes.Buffer-16            	52127677	        21.95 ns/op	      16 B/op	       1 allocs/op
+BenchmarkExample/bytes.Buffer-16            	53280289	        23.24 ns/op	      16 B/op	       1 allocs/op
+BenchmarkExample/bytes.Buffer-16            	53267517	        22.00 ns/op	      16 B/op	       1 allocs/op
+BenchmarkExample/bytes.Buffer-16            	54496902	        21.92 ns/op	      16 B/op	       1 allocs/op
+BenchmarkExample/bytes.Buffer-16            	54218173	        21.92 ns/op	      16 B/op	       1 allocs/op
+PASS
+ok  	github.com/j178/benchdiff	10.014s
