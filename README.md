@@ -56,7 +56,6 @@ Example/bytes.Buffer-16      16.0B ± 0%
 name                        allocs/op
 Example/strings.Builder-16    0.00
 Example/bytes.Buffer-16       1.00 ± 0%
-
 ```
 
 Wants to get a diff? try `benchdiff`:
