@@ -37,13 +37,13 @@ func BenchmarkExample(b *testing.B) {
 
 ```
 
-We run the test and analyze it using the `bencstat` tool:
+We run the test and analyze it using the [benchstat](https://github.com/golang/perf/tree/master/cmd/benchstat) tool:
 ```shell
 $ go test -run='^$' -bench=. -benchmem -count 5 | tee result.txt
 $ benchstat result.txt
 ```
 
-But `bencstat` shows each summary only:
+But `benchstat` shows each summary only:
 ```
 name                        time/op
 Example/strings.Builder-16  0.71ns ± 1%
