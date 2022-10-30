@@ -69,25 +69,10 @@ Here is the nice diff result:
 ```
 name               old time/op    new time/op    delta
 Buffer-vs-Builder    21.9ns ± 0%     0.7ns ± 1%   -96.78%  (p=0.016 n=4+5)
-Buffer-vs-Builder    21.9ns ± 0%     0.7ns ± 1%   -96.78%  (p=0.016 n=4+5)
-Buffer-vs-Builder    21.9ns ± 0%     0.7ns ± 1%   -96.78%  (p=0.016 n=4+5)
-Buffer-vs-Builder    21.9ns ± 0%     0.7ns ± 1%   -96.78%  (p=0.016 n=4+5)
-Buffer-vs-Builder    21.9ns ± 0%     0.7ns ± 1%   -96.78%  (p=0.016 n=4+5)
-Buffer-vs-Builder    21.9ns ± 0%     0.7ns ± 1%   -96.78%  (p=0.016 n=4+5)
 
 name               old alloc/op   new alloc/op   delta
 Buffer-vs-Builder     16.0B ± 0%      0.0B       -100.00%  (p=0.008 n=5+5)
-Buffer-vs-Builder     16.0B ± 0%      0.0B       -100.00%  (p=0.008 n=5+5)
-Buffer-vs-Builder     16.0B ± 0%      0.0B       -100.00%  (p=0.008 n=5+5)
-Buffer-vs-Builder     16.0B ± 0%      0.0B       -100.00%  (p=0.008 n=5+5)
-Buffer-vs-Builder     16.0B ± 0%      0.0B       -100.00%  (p=0.008 n=5+5)
-Buffer-vs-Builder     16.0B ± 0%      0.0B       -100.00%  (p=0.008 n=5+5)
 
 name               old allocs/op  new allocs/op  delta
-Buffer-vs-Builder      1.00 ± 0%      0.00       -100.00%  (p=0.008 n=5+5)
-Buffer-vs-Builder      1.00 ± 0%      0.00       -100.00%  (p=0.008 n=5+5)
-Buffer-vs-Builder      1.00 ± 0%      0.00       -100.00%  (p=0.008 n=5+5)
-Buffer-vs-Builder      1.00 ± 0%      0.00       -100.00%  (p=0.008 n=5+5)
-Buffer-vs-Builder      1.00 ± 0%      0.00       -100.00%  (p=0.008 n=5+5)
 Buffer-vs-Builder      1.00 ± 0%      0.00       -100.00%  (p=0.008 n=5+5)
 ```

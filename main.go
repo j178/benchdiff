@@ -149,13 +149,36 @@ var sortNames = map[string]benchstat.Order{
 	"delta": benchstat.ByDelta,
 }
 
-func addString(strings *[]string, add string) {
-	for _, s := range *strings {
-		if s == add {
-			return
-		}
+// addMetrics returns the metrics with the given key from c,
+// creating a new one if needed.
+func addMetrics(c *benchstat.Collection, key benchstat.Key) *benchstat.Metrics {
+	if c.Metrics == nil {
+		c.Metrics = make(map[benchstat.Key]*benchstat.Metrics)
 	}
-	*strings = append(*strings, add)
+	if stat, ok := c.Metrics[key]; ok {
+		return stat
+	}
+
+	addString := func(strings *[]string, add string) {
+		for _, s := range *strings {
+			if s == add {
+				return
+			}
+		}
+		*strings = append(*strings, add)
+	}
+	addString(&c.Configs, key.Config)
+	addString(&c.Groups, key.Group)
+	if c.Benchmarks == nil {
+		c.Benchmarks = make(map[string][]string)
+	}
+	benchmarks := c.Benchmarks[key.Group]
+	addString(&benchmarks, key.Benchmark)
+	c.Benchmarks[key.Group] = benchmarks
+	addString(&c.Units, key.Unit)
+	m := &benchstat.Metrics{Unit: key.Unit}
+	c.Metrics[key] = m
+	return m
 }
 
 func main() {
@@ -221,33 +244,27 @@ func main() {
 			AddGeoMean: c.AddGeoMean,
 			SplitBy:    c.SplitBy,
 			Order:      c.Order,
-			Benchmarks: make(map[string][]string),
 		}
-		metrics := make(map[benchstat.Key]*benchstat.Metrics)
-		for k, m := range c.Metrics {
-			if pat1.MatchString(k.Benchmark) {
-				k.Config = k.Config + "_a"
+		for k0, m0 := range c.Metrics {
+			if pat1.MatchString(k0.Benchmark) {
+				k := k0
+				k.Config = k0.Config + "_a"
 				k.Benchmark = *flagName
-				metrics[k] = m
-				addString(&nc.Configs, k.Config)
-				addString(&nc.Groups, k.Group)
-				addString(&nc.Units, k.Unit)
-				nc.Benchmarks[k.Group] = append(nc.Benchmarks[k.Group], k.Benchmark)
+				m := addMetrics(nc, k)
+				m.Values = append(m.Values, m0.Values...)
+				delete(c.Metrics, k0)
 			}
 		}
-		for k, m := range c.Metrics {
-			if pat2.MatchString(k.Benchmark) {
+		for k0, m0 := range c.Metrics {
+			if pat2.MatchString(k0.Benchmark) {
+				k := k0
 				k.Config = k.Config + "_b"
 				k.Benchmark = *flagName
-				metrics[k] = m
-				addString(&nc.Configs, k.Config)
-				addString(&nc.Groups, k.Group)
-				addString(&nc.Units, k.Unit)
-				nc.Benchmarks[k.Group] = append(nc.Benchmarks[k.Group], k.Benchmark)
+				m := addMetrics(nc, k)
+				m.Values = append(m.Values, m0.Values...)
+				delete(c.Metrics, k0)
 			}
-
 		}
-		nc.Metrics = metrics
 		c = nc
 	}
 
